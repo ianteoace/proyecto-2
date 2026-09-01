@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { get } from 'http'; 
 import { CreateUserDto } from './dto/users.dto';
@@ -20,4 +20,12 @@ export class UsersController {
     create(@Body() data: CreateUserDto){
         return this.usersService.findAll();
     }
+    @Delete(':id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    eliminarUsuario(@Param('id') id: string){
+        return{
+            mensaje: 'Usuario con ID ${id} elimando con exito'
+        };
+    }
+
 }
